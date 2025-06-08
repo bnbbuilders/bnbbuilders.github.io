@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNB Builders - Excellence in Construction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            margin-right: 0.5rem;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #2c5aa0;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Section Styles */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Home Section */
+        #home {
+            background: linear-gradient(rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7)), url('./images/background_civil.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        /* About Section */
+        #about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .about-image img {
+             width: 100%;
+             height: auto;
+             max-height: 350px;
+             border-radius: 15px;
+             object-fit: cover;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c5aa0;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Services Section */
+        #services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: #f8f9fa;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-content h3 {
+            color: #2c5aa0;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: #2c5aa0;
+            margin-right: 1rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2c5aa0;
+        }
+        
+        #form-submission-status {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            display: none;
+            font-weight: bold;
+        }
+
+        #form-submission-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #2c5aa0;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Popup Styles */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .popup-overlay.active .popup {
+            transform: scale(1);
+        }
+
+        .popup h3 {
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+        }
+
+        .popup-close {
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .popup-close:hover {
+            background: #1e3d6f;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px; /* Adjust based on header height */
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                justify-content: start;
+                padding-top: 2rem;
+                align-items: center;
+                gap: 2.5rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content, .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo"><img src="./images/logo_bnb.jpeg" alt="BNB Builders Logo" class="logo-img">BNB Builders</div>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+                <li><a href="#about" onclick="scrollToSection('about')">About Us</a></li>
+                <li><a href="#services" onclick="scrollToSection('services')">Services</a></li>
+                <li><a href="#projects" onclick="scrollToSection('projects')">Projects</a></li>
+                <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Welcome Popup -->
+    <div class="popup-overlay active" id="welcomePopup">
+        <div class="popup">
+            <h3>🎉 Welcome to BNB Builders!</h3>
+            <p>Your trusted partner in construction excellence. We're excited to bring your vision to life with our innovative solutions and expert craftsmanship.</p>
+            <button class="popup-close" onclick="closePopup()">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AAJA KO NIRMAN, BHABISHYA KO ADHAR</h1>
+                <p>Best construction and consultancy services with a commitment to excellence, innovation, and sustainability</p>
+                <a href="#contact" class="cta-button" onclick="scrollToSection('contact')">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About BNB Builders</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Excellence in Every Build</h2>
+                    <p>At BNB Builders, we are a dynamic startup committed to revolutionizing the construction industry through innovative design, sustainable practices, and uncompromising quality. Our team of experienced professionals brings fresh perspectives to every project, ensuring that your vision becomes reality.</p>
+                    <p>From residential homes to commercial complexes, we handle projects of all scales with the same level of dedication and attention to detail. Our comprehensive approach covers everything from initial consultation to final handover, making us your single point of contact for all construction needs.</p>
+                </div>
+                <div class="about-image">
+                    <img src="./images/about.jpeg" alt="About BNB Builders">
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="25">0</span>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="18">0</span>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="3">0</span>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="98">0</span>
+                    <div class="stat-label">Client Satisfaction %</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">🏠</span>
+                    <h3>Residential Building Design & Construction</h3>
+                    <p>Complete residential solutions from concept to completion, creating beautiful and functional homes tailored to your lifestyle.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🏗️</span>
+                    <h3>Structural and Civil Engineering Solutions</h3>
+                    <p>Expert structural engineering and civil solutions ensuring safety, durability, and compliance with all building codes.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">📊</span>
+                    <h3>Project Management & Site Supervision</h3>
+                    <p>Comprehensive project oversight ensuring timely delivery, quality control, and efficient resource management throughout construction.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🔍</span>
+                    <h3>Home Renovation & Inspection</h3>
+                    <p>Professional renovation services and thorough property inspections to enhance value and ensure structural integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Our Projects</h2>
+            <div class="projects-grid">
+                <!-- Project cards updated to use background-image for better control -->
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./images/project1.jpeg')"></div>
+                    <div class="project-content">
+                        <h3>Modern Residential Complex</h3>
+                        <p>A state-of-the-art residential development featuring 24 luxury apartments with sustainable design elements and modern amenities.</p>
+                        <p><strong>Location:</strong> Kathmandu Valley | <strong>Completed:</strong> 2024</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./images/project2.jpeg')"></div>
+                    <div class="project-content">
+                        <h3>Commercial Office Building</h3>
+                        <p>A 6-story commercial office building with contemporary design, featuring energy-efficient systems and flexible workspace solutions.</p>
+                        <p><strong>Location:</strong> Lalitpur | <strong>Completed:</strong> 2024</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./images/project3.jpeg')"></div>
+                    <div class="project-content">
+                        <h3>Luxury Villa Renovation</h3>
+                        <p>Complete renovation of a heritage villa, preserving traditional architecture while incorporating modern comfort and functionality.</p>
+                        <p><strong>Location:</strong> Bhaktapur | <strong>Completed:</strong> 2023</p>
+                    </div>
+                </div>
+                 <div class="project-card">
+                    <div class="project-image" style="background-image: url('./images/project4.jpeg')"></div>
+                    <div class="project-content">
+                        <h3>Retail Shopping Center</h3>
+                        <p>A modern shopping complex with innovative layout design, featuring 15 retail spaces and underground parking facilities.</p>
+                        <p><strong>Location:</strong> Pokhara | <strong>Completed:</strong> 2023</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./images/project5.jpeg')"></div>
+                    <div class="project-content">
+                        <h3>Affordable Housing Project</h3>
+                        <p>Sustainable affordable housing development with 40 units, focusing on community living and environmental responsibility.</p>
+                        <p><strong>Location:</strong> Chitwan | <strong>Ongoing</strong></p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('./images/project6.jpeg')"></div>
+                    <div class="project-content">
+                        <h3>Industrial Warehouse</h3>
+                        <p>Large-scale industrial warehouse construction with advanced logistics design and sustainable building practices.</p>
+                        <p><strong>Location:</strong> Birgunj | <strong>Ongoing</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; color: #2c5aa0; margin-right: 1rem;">📍</span>
+                        <div>
+                            <strong>Address:</strong><br>
+                            Thamel, Kathmandu<br>
+                            Nepal, 44600
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; color: #2c5aa0; margin-right: 1rem;">📞</span>
+                        <div>
+                            <strong>Phone:</strong><br>
+                            +977-1-4123456<br>
+                            +977-9841234567
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; color: #2c5aa0; margin-right: 1rem;">✉️</span>
+                        <div>
+                            <strong>Email:</strong><br>
+                            info@bnbbuilders.com<br>
+                            projects@bnbbuilders.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span style="font-size: 1.5rem; color: #2c5aa0; margin-right: 1rem;">🕒</span>
+                        <div>
+                            <strong>Working Hours:</strong><br>
+                            Monday - Friday: 9:00 AM - 6:00 PM<br>
+                            Saturday: 9:00 AM - 2:00 PM
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Send Message</button>
+                        <div id="form-submission-status"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BNB Builders</h3>
+                <p>Building dreams, creating futures with excellence in construction and consultancy services.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+                    <li><a href="#about" onclick="scrollToSection('about')">About Us</a></li>
+                    <li><a href="#services" onclick="scrollToSection('services')">Services</a></li>
+                    <li><a href="#projects" onclick="scrollToSection('projects')">Projects</a></li>
+                    <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📍 Thamel, Kathmandu, Nepal</p>
+                <p>📞 +977-1-4123456</p>
+                <p>✉️ info@bnbbuilders.com</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #555;">
+            <p>&copy; 2025 BNB Builders. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling and section animations
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            
+            const headerHeight = document.querySelector('header').offsetHeight;
+            
+            window.scrollTo({
+                top: section.offsetTop - headerHeight,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.classList.contains('active')) {
+                 navLinks.classList.remove('active');
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close popup
+        function closePopup() {
+            document.getElementById('welcomePopup').classList.remove('active');
+        }
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.ceil(current);
+                    }
+                }, 20);
+            });
+        }
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    if (entry.target.id === 'about' && !entry.target.dataset.animated) {
+                        animateCounters();
+                        entry.target.dataset.animated = "true"; // Ensure it only runs once
+                    }
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const status = document.getElementById('form-submission-status');
+            status.textContent = 'Thank you for your message! We will get back to you soon.';
+            status.className = 'success';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+
+            e.target.reset();
+        });
+
+        // Hide welcome popup automatically
+        setTimeout(() => {
+            const welcomePopup = document.getElementById('welcomePopup');
+            if (welcomePopup) welcomePopup.classList.remove('active');
+        }, 5000);
+
+        // Navbar scroll effect
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+        });
+    </script>
+</body>
+</html>
